@@ -42,3 +42,19 @@ btnScrollTO.addEventListener('click', function () {
     behavior: 'smooth',
   });
 });
+//page navigation with event delegation
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  console.log(e.target.classList.contains('.nav__link'));
+  //matching strategy
+  //matching if click happens on either menu item
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth',
+    });
+  } else {
+    console.log('nothing');
+  }
+});
