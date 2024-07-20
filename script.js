@@ -34,16 +34,10 @@ document.addEventListener('keydown', function (e) {
 });
 btnScrollTO.addEventListener('click', function () {
   //getting the coordinates where we want to scroll to
-  //returns in x,y coordinates along with height width
-  const s1coords = section1.getBoundingClientRect(); //the coordinates chagin on scroll.
+
+  const s1coords = section1.getBoundingClientRect(); //the coordinates changing on scroll.
   console.log(s1coords);
-  // onclick scroll to
-  //old way
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // });
+
   section1.scrollIntoView({
     behavior: 'smooth',
   });
