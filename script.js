@@ -127,7 +127,7 @@ allSections.forEach(section => {
   section.classList.add('section--hidden');
 });
 //Loading image animation
-const imgTargets = document.querySelectorAll(img[data - src]);
+const imgTargets = document.querySelectorAll('img[data-src]');
 const loadImg = function (entries, observer) {
   const [entry] = entries;
   if (!entry.isIntersecting) return;
