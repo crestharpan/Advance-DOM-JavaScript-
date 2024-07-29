@@ -14,6 +14,7 @@ const nav = document.querySelector('.nav');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+const header = document.querySelector('.header');
 
 const openModal = function () {
   modal.classList.remove('hidden');
@@ -95,3 +96,17 @@ const handleHover = function (e) {
 //passing the "argument" into handler
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
+//Sticky navigation bar using the interscting observer API
+const navHeight = nav.getBoundingClientRect().height; //getting the height of the navBar dynamically
+const stickyNav = function (entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`, //isIn pixel
+});
+headerObserver.observe(header);
