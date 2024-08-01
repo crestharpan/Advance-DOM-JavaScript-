@@ -114,9 +114,10 @@ headerObserver.observe(header);
 const allSections = document.querySelectorAll('.section');
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  if (entry.isIntersecting)
-    return entry.target.classList.remove('section--hidden');
-  observer.unObserve(entry.target); //This logs the events for the first time only and not on each scroll
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+
+  observer.unobserve(entry.target); //This logs the events for the first time only and not on each scroll
 };
 const sectionObserver = new IntersectionObserver(revealSection, {
   root: null,
@@ -136,7 +137,7 @@ const loadImg = function (entries, observer) {
   entry.target.addEventListener('load', function () {
     entry.target.classList.remove('lazy-img');
   });
-  observer.unObserve(entry.target);
+  observer.unobserve(entry.target);
 };
 const imgObserver = new IntersectionObserver(loadImg, {
   root: null,
